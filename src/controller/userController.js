@@ -49,6 +49,16 @@ const createNguoiDung = async (req,res)=>{
         res.status(500).send("Failed created")
     }
 }
+const user_order = async(req,res)=>{
+    try {
+        let {user_id,food_id,amount,code,arr_sub_id} = req.params
+        let data = {user_id,food_id,amount,code,arr_sub_id}
+        await model.order.create(data)
+        successCode(res,data,"Ordered success")
+    } catch (error) {
+        console.log("failed to order")
+    }
+}
 // cập nhật người dùng
 const updateNguoidung = async (req,res)=>{
     try {
@@ -133,6 +143,7 @@ const login = async (req,res)=>{
         
 }
 export {
+    user_order,
     login,
     signup,
     getNguoidung,
